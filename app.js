@@ -1,6 +1,6 @@
 const express =require('express')
 const mongoose = require ('mongoose')
-const url = 'mongodb://localhost/Ravidbapi'
+const url = 'https://ravi-api-check.herokuapp.com/Ravidbapi'
 const app = express()
 
 
