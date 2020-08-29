@@ -7,20 +7,7 @@ const reg = require('../model/reg')
 
 
 
-router.route("/")
-.get( async (req,res)=> {
 
-    try{
-
-       const regs = await reg.find()
-        res.json(regs)
-        
-        
-            }catch(err){
-                res.send('Error' + err)
-        
-            }
-})
 
 
 
