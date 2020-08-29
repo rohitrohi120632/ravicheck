@@ -29,7 +29,8 @@ const registrationRouter = require ('./routes/regs')
 app.use('/regs', registrationRouter)
 
 
-
+ const creatRouter = require ('./routes/create')
+ app.use('/regs/create', creatRouter)
 
 
 
