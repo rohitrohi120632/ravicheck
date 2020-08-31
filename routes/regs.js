@@ -137,7 +137,7 @@ console.log(req.file);
              email:req.body.email,
               mobile: req.body.mobile,
               //with image and details
-              profileimage:req.file.filename
+             // profileimage:req.file.filename
            
         
           })
