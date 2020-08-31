@@ -21,8 +21,11 @@ const regSchema = new mongoose.Schema({
     mobile: {
         type: String,
         required: true
-    }
-
+    },
+     profileImage:{
+         type:Buffer,
+       
+     }
 })
 
 

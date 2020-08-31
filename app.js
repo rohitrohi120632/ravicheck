@@ -2,6 +2,7 @@ const express =require('express')
 const mongoose = require ('mongoose')
 const cors = require ('cors');
 
+
 const port = process.env.PORT || 3000
 
 require('dotenv/config');
@@ -23,14 +24,17 @@ mongoose.connect(
 
 app.use(express.json());
 app.use(cors());
-
+app.use(express.static('uploads'));
 
 const registrationRouter = require ('./routes/regs')
 app.use('/regs', registrationRouter)
 
 
- const creatRouter = require ('./routes/create')
- app.use('/regs/create', creatRouter)
+
+
+//  const profile = require('./routes/profile')
+//  app.use('/regs/profile', profile)
+
 
 
 
