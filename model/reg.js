@@ -22,10 +22,7 @@ const regSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-     profileImage:{
-         type:Buffer,
-       
-     }
+     
 })
 
 

@@ -2,8 +2,92 @@ const express =require('express')
 const router = express.Router()
 const reg = require('../model/reg')
 const multer = require  ('multer')
+const path = require ('path')
+const fs = require ('fs')
+const { db } = require('../model/reg')
 
 
+
+
+
+
+const storage = multer.diskStorage({
+    destination: function (req,file,cb){
+        cb(null,'uploads')
+    },
+    filename: function (req,file,cb){
+        cb(null,file.fieldname + '-' + Date.now() + path.extname(file.originalname) )
+    }
+})
+
+
+const upload = multer({
+    storage:storage
+})
+
+
+
+
+//single file upload
+
+router.post('/uploadimage', upload.single('profileImage'), (req,res,next) => {
+
+    const file =req.file;
+    if(!file) {
+        const error =new Error ("please upload")
+        error.httpStatusCode = 400
+        return next (error);
+    }
+    res.send (file);
+})
+
+// multiple files
+router.post('/uploadmultiple', upload.array('profileImages', 12), (req, res,next)=> {
+
+    const files = req.files;
+
+    if(!files){
+        const error = new Error ("please upload files");
+        error.httpStatusCode = 400;
+        return next (error);
+    }
+    res.send(files);
+})
+
+
+//configuring image upload to db
+
+router.post('/uploadphoto', upload.single('myImage'), (req,res)=> {
+
+    const img = fs.readFileSync(req.file.path);
+    const encode_img = img.toString('base64');
+
+    //define a json object for the image
+
+    const finalImg = {
+        contentType:req.file.mimetype,
+        path:req.file.path,
+        image:new Buffer(encode_img, 'base64')
+    };
+
+    //insert the image to the db
+
+     db.collection('imagestore').insertOne(finalImg,(err,result)=>{
+         console.log(result);
+          if(err) return console.log(err);
+
+          console.log('saved to db');
+
+     //fetching img in another window
+
+     res.contentType(finalImg.contentType);
+     res.send(finalImg.image);
+         
+
+
+     })
+
+})
 
 
 
