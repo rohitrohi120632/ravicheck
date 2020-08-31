@@ -136,6 +136,7 @@ console.log(req.file);
                last_name:req.body.last_name,
              email:req.body.email,
               mobile: req.body.mobile,
+              //with image and details
               profileimage:req.file.filename
            
         

@@ -24,7 +24,7 @@ const regSchema = new mongoose.Schema({
     },
      profileimage: {
         type:String,
-        
+        required: false
 
      }
 })
