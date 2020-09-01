@@ -146,7 +146,7 @@ console.log(req.file);
           try{
 
                const r1 = await re.save()
-                res.json(r1 )
+                res.status(201).json(r1 )
               
             }catch(err){
             
