@@ -128,14 +128,16 @@ router.get('/:id', async(req,res)=> {
 
 
 
-router.post('/create',upload.single('profImg'), async (req,res) => {
+router.post('/create',
+//upload.single('profImg'), 
+async (req,res) => {
  
 console.log(req.file);
     const re = new reg ({
-             first_name:req.body.first_name,
+               first_name:req.body.first_name,
                last_name:req.body.last_name,
-             email:req.body.email,
-              mobile: req.body.mobile,
+               email:req.body.email,
+               mobile: req.body.mobile,
               //with image and details
              // profileimage:req.file.filename
            
